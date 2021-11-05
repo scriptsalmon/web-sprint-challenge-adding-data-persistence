@@ -1,6 +1,6 @@
 exports.up = function (knex) {
   return knex.schema
-    .createTable("project", (table) => {
+    .createTable("projects", (table) => {
       table.increments("project_id");
       table.string("project_name", 64).notNullable();
       table.string("project_description", 128);
@@ -11,7 +11,7 @@ exports.up = function (knex) {
       table.string("resource_name", 64).notNullable().unique();
       table.string("resource_description", 128);
     })
-    .createTable("task", (table) => {
+    .createTable("tasks", (table) => {
       table.increments("task_id");
       table.string("task_description", 128).notNullable();
       table.string("task_notes", 256);
@@ -29,7 +29,7 @@ exports.up = function (knex) {
 
 exports.down = function (knex) {
   return knex.schema
-    .dropTableIfExists("task")
+    .dropTableIfExists("tasks")
     .dropTableIfExists("resources")
-    .dropTableIfExists("project");
+    .dropTableIfExists("projects");
 };
