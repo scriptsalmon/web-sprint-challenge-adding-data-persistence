@@ -1,9 +1,14 @@
 const db = require("../../data/dbConfig");
 
-async function find() {
-  return await "you found resources~";
+function find() {
+  return db("resources");
+}
+
+function findById(id) {
+  return db("resources as r").where("r.resource_id", id);
 }
 
 module.exports = {
   find,
+  findById,
 };
