@@ -19,6 +19,20 @@ router.get("/:id", (req, res, next) => {
     .catch(next);
 });
 
-
+router.post("/", async (req, res, next) => {
+  const { resource_name, resource_description } = req.body;
+  try {
+    if(!resource_name || !resource_description) {
+      next({ status: 400, message: "please include resource name and description, beautiful" })
+    } else {
+      Resource.create(req.body)
+        .then(newResource => {
+          res.status(201).json(newResource);
+        })
+    }
+  } catch (err) {
+    next(err)
+  }
+})
 
 module.exports = router;
