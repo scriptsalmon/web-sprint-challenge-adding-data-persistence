@@ -9,12 +9,12 @@ function findById(id) {
 }
 
 async function create(project) {
-  const [project_id] = await db("projects").insert(project)
+  const [project_id] = await db("projects").insert(project);
   return findById(project_id).first();
 }
 
 module.exports = {
   find,
   findById,
-  create
+  create,
 };

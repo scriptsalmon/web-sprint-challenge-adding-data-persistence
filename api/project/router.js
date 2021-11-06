@@ -24,13 +24,12 @@ router.get("/:id", (req, res, next) => {
 router.post("/", async (req, res, next) => {
   const { project_name, project_description } = req.body;
   try {
-    if(!project_name || !project_description){
-      next({ status: 404, message: "name and description please" })
+    if (!project_name || !project_description) {
+      next({ status: 404, message: "name and description please" });
     } else {
-      Project.create(req.body)
-      .then((newProject) => {
+      Project.create(req.body).then((newProject) => {
         res.status(201).json(newProject);
-      })
+      });
     }
   } catch (err) {
     next(err);
